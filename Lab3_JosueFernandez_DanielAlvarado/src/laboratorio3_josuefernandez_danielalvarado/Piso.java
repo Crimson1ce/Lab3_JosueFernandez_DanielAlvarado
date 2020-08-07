@@ -17,9 +17,8 @@ public class Piso {
     public Piso() {
     }
 
-    public Piso(String administrador, Ranker director) {
+    public Piso(String administrador) {
         this.administrador = administrador;
-        this.director = director;
     }
 
     public Piso(String administrador, Ranker director, int nivel) {
