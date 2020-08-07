@@ -9,9 +9,63 @@ public class Persona {
     
     private String nombre;
     private int identificacion;
-    private String posicion;
-    private String [] Datos = new String [2];
+    private Posicion posicion;
+    private EstadoRegistro estado;
 
     public Persona() {
     }
+
+    public Persona(String nombre, int identificacion, Posicion posicion, EstadoRegistro estado) {
+        this.nombre = nombre;
+        this.identificacion = identificacion;
+        this.posicion = posicion;
+        this.estado = estado;
+    }
+    
+    
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(int identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public Posicion getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(Posicion posicion) {
+        this.posicion = posicion;
+    }
+
+    public EstadoRegistro getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoRegistro estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona: " + "nombre = " + nombre + ", identificacion = " + identificacion + ", posicion = " + posicion + ", estado = " + estado;
+    }
+    
+    
+    
+    
 }
