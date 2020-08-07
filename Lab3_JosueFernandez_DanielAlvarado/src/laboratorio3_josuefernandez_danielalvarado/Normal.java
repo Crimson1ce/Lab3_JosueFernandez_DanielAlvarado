@@ -9,14 +9,18 @@ import java.util.ArrayList;
 public class Normal extends Persona {
     
     private ArrayList <Prueba> pruebas = new ArrayList();
-    private String descripcion;
+    private String objetivo;
 
     public Normal() {
+        super();
     }
 
-    public Normal(String descripcion) {
-        this.descripcion = descripcion;
+    public Normal(String objetivo, String nombre, int identificacion, Posicion posicion, EstadoRegistro estado) {
+        super(nombre, identificacion, posicion, estado);
+        this.objetivo = objetivo;
     }
+
+    
 
     public ArrayList<Prueba> getPruebas() {
         return pruebas;
@@ -27,16 +31,16 @@ public class Normal extends Persona {
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return objetivo;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescripcion(String objetivo) {
+        this.objetivo = objetivo;
     }
 
     @Override
     public String toString() {
-        return "Normal: " + "pruebas = " + pruebas + ", descripcion = " + descripcion;
+        return "Normal: " + "pruebas = " + pruebas + ", descripcion = " + objetivo;
     }
     
     

@@ -11,11 +11,14 @@ public class Ranker extends Persona{
     private ArrayList <Prueba> evaluador = new ArrayList();
 
     public Ranker() {
+        super();
     }
 
-    public ArrayList<Prueba> getEvaluador() {
-        return evaluador;
+    public Ranker(String nombre, int identificacion, Posicion posicion, EstadoRegistro estado) {
+        super(nombre, identificacion, posicion, estado);
     }
+
+   
 
     public void setEvaluador(ArrayList<Prueba> evaluador) {
         this.evaluador = evaluador;

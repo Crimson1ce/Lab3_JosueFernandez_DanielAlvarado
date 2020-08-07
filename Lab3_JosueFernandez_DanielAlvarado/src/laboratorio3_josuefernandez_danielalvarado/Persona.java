@@ -17,7 +17,7 @@ public class Persona {
 
     public Persona(String nombre, int identificacion, Posicion posicion, EstadoRegistro estado) {
         this.nombre = nombre;
-        this.identificacion = identificacion;
+        setIdentificacion(identificacion);
         this.posicion = posicion;
         this.estado = estado;
     }
