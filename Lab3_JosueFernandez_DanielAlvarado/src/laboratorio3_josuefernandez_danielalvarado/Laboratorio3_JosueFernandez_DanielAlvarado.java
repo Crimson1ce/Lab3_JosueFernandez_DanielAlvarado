@@ -19,6 +19,11 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
     
     static ArrayList<Piso> torre = new ArrayList();
     static ArrayList<Integer> pisosExistentes = new ArrayList();
+    static ArrayList<Persona> personasEnTorre = new ArrayList();
+    
+    static int contadorPersonas = 0;
+    static int contadorPisos = 0;
+    static int contadorPruebas = 0;
     
     /**
      * @param args the command line arguments
@@ -93,12 +98,14 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         
         String nombre;
         
+        contadorPisos++;
+        torre.add(new Piso());
+        pisosExistentes.add(1);
+        
         switch (opcion) {
             case 1:
-                
-                
-                
-                
+                //Crear persona
+                crearPersona();
                 break;
             case 2:
                 //Modificar persona
@@ -133,30 +140,35 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
 
     public static void crearPersona(){
         
+        //Crear persona
+        System.out.println("***CREAR PERSONA***\n");
+        
         //Listar Pisos
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
+        
+        /*
         System.out.print("Ingrese el piso en que desea agregar esta persona: ");
         int cualPiso = sc.nextInt();
         
         while(cualPiso<1 || cualPiso>134 || !pisosExistentes.contains(cualPiso)){
             System.out.print("\tEl piso ingresado no es válido, ingrese de nuevo: ");
-        }   cualPiso = sc.nextInt();
+            cualPiso = sc.nextInt();
+        }   
+        */
         
-        //Crear persona
-        System.out.println("***CREAR PERSONA***\n");
         System.out.print("Ingrese el nombre de la persona: ");
         String nombre = sc.next();
         
-        System.out.println("Posiciones:");
+        System.out.println("\nPosiciones:");
         System.out.println("1-> Pescador");
         System.out.println("2-> Portador de lanzas");
         System.out.println("3-> Portador de luz");
         System.out.println("4-> Explorador");
         System.out.println("5-> Manipulador de ondas");
-        System.out.print("\nIngrese la posición de la persona: ");
+        System.out.print("Ingrese la posición de la persona: ");
         int posi = sc.nextInt();
         System.out.println();
         
@@ -192,7 +204,7 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
                 posicion = "Manipulador de ondas";
         }
         
-        System.out.print("Ingrese la identificación de la persona: ");
+        System.out.print("Ingrese el número de identificación de la persona: ");
         int id = sc.nextInt();
         
         for (int i=0; i<torre.size(); i++) {
@@ -230,7 +242,7 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         System.out.println("\nEstado de registro:");
         System.out.println("1-> Regular");
         System.out.println("2-> Irregular");
-        System.out.print("\nIngrese el estado de registro de la persona: ");
+        System.out.print("Ingrese el estado de registro de la persona: ");
         int registro = sc.nextInt();
         System.out.println();
         
@@ -240,17 +252,19 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
             System.out.println("\tEstado de registro:");
             System.out.println("\t1-> Regular");
             System.out.println("\t2-> Irregular");
-            System.out.print("\n\tIngrese un estado de registro válido: ");
-            tipo = sc.nextInt();
+            System.out.print("\tIngrese un estado de registro válido: ");
+            registro = sc.nextInt();
             System.out.println();
         }
         
+        /*
         int pisoEnLista=0;
         for (int i = 0; i < torre.size(); i++) {
             if (cualPiso==torre.get(i).getNivel()) {
                 pisoEnLista = i;
             }
         }
+        */
         
         //Creamos el estado de registro
         EstadoRegistro estado;
@@ -269,14 +283,57 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         //En caso de ser normal...
         if(tipo==1){
             System.out.print("Escriba el obetivo de la persona: ");
-            String objetivo = sc.next();
+            sc.nextLine();
+            String objetivo = sc.nextLine();
                 
             //Creamos la persona
-            torre.get(pisoEnLista).getHabitantes().add(new Normal(objetivo, nombre, id, new Posicion(posicion), estado));
+            personasEnTorre.add(new Normal(objetivo, nombre, id, new Posicion(posicion), estado));
         } else {
-            torre.get(pisoEnLista).getHabitantes().add(new Ranker(nombre, id, new Posicion(posicion), estado));
+            personasEnTorre.add(new Ranker(nombre, id, new Posicion(posicion), estado));
         }
         
+        contadorPersonas++;
+        
     }//Fin de crearPersona
+    
+    public static void modificarPersona(){
+        listarPersonas();
+        System.out.println();
+        
+        System.out.print("Ingrese el número de la persona a modificar: ");
+        int nPersona = sc.nextInt();
+        
+        System.out.println("");
+        
+        
+    }
+    
+    
+    
+    
+    
+    public static void listarPersonas(){
+        int i=1;
+        System.out.println("PERSONAS\n");
+        for (Piso piso : torre) {
+            for (Persona habitante : piso.getHabitantes()) {
+                System.out.println((i++) + ". " + habitante.toString());
+            }
+        }
+    }
+    
+    public static Persona getPersonaEnTorre(int posicion){
+        
+        int i=1;
+        for (Piso piso : torre) {
+            for (Persona habitante : piso.getHabitantes()) {
+                if (i==posicion) {
+                    return habitante;
+                }
+            }
+        }
+        
+        return new Persona();
+    }
     
 }

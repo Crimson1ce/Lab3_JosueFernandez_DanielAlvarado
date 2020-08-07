@@ -6,5 +6,12 @@
 package laboratorio3_josuefernandez_danielalvarado;
 
 public class Irregular extends EstadoRegistro{
+
+    @Override
+    public String toString() {
+        return "Irregular";
+    }
+    
+    
     
 }

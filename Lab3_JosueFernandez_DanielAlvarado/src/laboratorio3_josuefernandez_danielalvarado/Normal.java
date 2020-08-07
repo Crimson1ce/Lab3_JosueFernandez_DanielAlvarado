@@ -30,17 +30,17 @@ public class Normal extends Persona {
         this.pruebas = pruebas;
     }
 
-    public String getDescripcion() {
+    public String getObjetivo() {
         return objetivo;
     }
 
-    public void setDescripcion(String objetivo) {
+    public void setObjetivo(String objetivo) {
         this.objetivo = objetivo;
     }
 
     @Override
     public String toString() {
-        return "Normal: " + "pruebas = " + pruebas + ", descripcion = " + objetivo;
+        return "Normal:\n" + super.toString() + "\tObjetivo: " + objetivo;
     }
     
     
