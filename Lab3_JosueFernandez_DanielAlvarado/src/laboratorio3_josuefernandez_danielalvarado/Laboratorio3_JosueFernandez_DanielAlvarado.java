@@ -22,6 +22,9 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
     static ArrayList<Persona> personasEnTorre = new ArrayList();
     
     static int contadorPersonas = 0;
+    static int contadorRankers = 0;
+    static int contadorNormales = 0;
+    
     static int contadorPisos = 0;
     static int contadorPruebas = 0;
     
@@ -83,10 +86,10 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
     public static void menuAdministrador(){
         
         System.out.println("\n*** ADMINISTRADOR ***");
-        System.out.println("1.  Crear Persona");
+        System.out.println("1.  Crear Persona"); //Terminado
         System.out.println("2.  Modificar Persona");
         System.out.println("3.  Elminar Persona");
-        System.out.println("4.  Crear Prueba");
+        System.out.println("4.  Crear Prueba"); //
         System.out.println("5.  Modificar Prueba");
         System.out.println("6.  Eliminar Prueba");
         System.out.println("7.  Crear Piso");
@@ -95,13 +98,14 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         System.out.println("10. Log-out");
         System.out.print("\nIngrese la opción que desee: ");
         int opcion = sc.nextInt();
+        sc.nextLine();
         
         String nombre;
-        
+        /*
         contadorPisos++;
         torre.add(new Piso());
         pisosExistentes.add(1);
-        
+        */
         switch (opcion) {
             case 1:
                 //Crear persona
@@ -135,6 +139,7 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
                 signedInAsAdministrator = false;
                 break;
             default:
+                System.out.println("Opción inválida.");
         }
     }
 
@@ -287,9 +292,11 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
             String objetivo = sc.nextLine();
                 
             //Creamos la persona
-            personasEnTorre.add(new Normal(objetivo, nombre, id, new Posicion(posicion), estado));
+            personasEnTorre.add(contadorNormales,new Normal(objetivo, nombre, id, new Posicion(posicion), estado));
+            contadorNormales++;
         } else {
             personasEnTorre.add(new Ranker(nombre, id, new Posicion(posicion), estado));
+            contadorRankers++;
         }
         
         contadorPersonas++;
@@ -308,10 +315,6 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         
     }
     
-    
-    
-    
-    
     public static void listarPersonas(){
         int i=1;
         System.out.println("PERSONAS\n");
@@ -319,6 +322,24 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
             for (Persona habitante : piso.getHabitantes()) {
                 System.out.println((i++) + ". " + habitante.toString());
             }
+        }
+    }
+    
+    public static void listarRankers(){
+        
+        int i=1;
+        System.out.println("RANKERS\n");
+        for (int j = contadorNormales; j < contadorPersonas; j++) {
+            System.out.println((i++) + ". " + personasEnTorre.toString());
+        }
+    }
+    
+    public static void listarNormales(){
+        
+        int i=1;
+        System.out.println("NORMALES\n");
+        for (int j = 0; j < contadorNormales; j++) {
+            System.out.println((i++) + ". " + personasEnTorre.toString());
         }
     }
     
@@ -334,6 +355,31 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         }
         
         return new Persona();
+    }
+    
+    public static void crearPrueba(){
+    
+        System.out.print("Ingrese el nombre de la prueba: ");
+        String nombre = sc.nextLine();
+        
+        listarRankers();
+        System.out.print("Escoja al ranker evaluador de la prueba: ");
+        int nRanker = sc.nextInt();
+        sc.nextLine();
+        
+        while (nRanker<1 || nRanker>contadorRankers) {            
+            listarRankers();
+            System.out.print("Escoja un ranker válido: ");
+            nRanker = sc.nextInt();
+            sc.nextLine();
+        }
+        
+        agregarPersonasAPrueba();
+        
+    }
+
+    public static void agregarPersonasAPrueba() {
+        
     }
     
 }

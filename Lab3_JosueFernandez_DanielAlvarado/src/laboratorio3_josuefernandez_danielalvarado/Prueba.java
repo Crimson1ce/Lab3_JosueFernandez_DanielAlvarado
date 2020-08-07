@@ -15,7 +15,7 @@ public class Prueba {
     private String nombre;
     private Ranker evaluador;
     private ArrayList<Normal> participantes = new ArrayList();
-    private boolean aprovada;
+    private boolean aprobada;
 
     public Prueba() {
     }
@@ -28,7 +28,7 @@ public class Prueba {
     public Prueba(String nombre, Ranker evaluador, boolean aprovada) {
         this.nombre = nombre;
         this.evaluador = evaluador;
-        this.aprovada = aprovada;
+        this.aprobada = aprovada;
     }
 
     public String getNombre() {
@@ -56,15 +56,15 @@ public class Prueba {
     }
 
     public boolean isAprovada() {
-        return aprovada;
+        return aprobada;
     }
 
     public void setAprovada(boolean aprovada) {
-        this.aprovada = aprovada;
+        this.aprobada = aprovada;
     }
 
     @Override
     public String toString() {
-        return "Prueba: " + "nombre = " + nombre + "  evaluador = " + evaluador + ", participantes = " + participantes + ", aprovada = " + aprovada;
+        return "Prueba: " + "nombre = " + nombre + "  evaluador = " + evaluador + ", participantes = " + participantes + ", aprobada = " + aprobada;
     }
 }
