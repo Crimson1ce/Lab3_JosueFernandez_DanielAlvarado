@@ -41,7 +41,9 @@ public class Persona {
     }
 
     public void setIdentificacion(int identificacion) {
-        this.identificacion = identificacion;
+        if(identificacion > 0){
+            this.identificacion = identificacion;
+        }
     }
 
     public Posicion getPosicion() {
