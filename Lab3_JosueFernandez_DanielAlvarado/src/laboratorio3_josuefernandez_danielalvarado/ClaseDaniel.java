@@ -7,7 +7,6 @@ package laboratorio3_josuefernandez_danielalvarado;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
-import static laboratorio3_josuefernandez_danielalvarado.Laboratorio3_JosueFernandez_DanielAlvarado.torre;
 /**
  *
  * @author dalva
@@ -59,7 +58,7 @@ public class ClaseDaniel {
                     indice = sc.nextInt();
                 }
                 
-                Ranker n = personas.;
+                Ranker n =(Ranker)personas.get(indice);
                 torre.get(contador).getEvaluadores().add(n);
                 
                 System.out.println("Desea seguir agregando evaluadores 1= si 2 no: ");
@@ -69,6 +68,49 @@ public class ClaseDaniel {
                     evaluadores = false;
                 }
                 num++;
+            }
+            
+            boolean hayDirector = false;
+            
+            while(hayDirector == false){
+                int limit = personas.size()-1;
+                int ale = 0+r.nextInt(limit);
+                
+                if(personas.get(ale) instanceof Ranker){
+                    torre.get(contador).setDirector((Ranker)personas.get(ale));
+                    hayDirector = true;
+                }
+            
+            }
+            
+            boolean agregarPersonas = true;
+            
+            while (agregarPersonas){
+                System.out.println("Lista de personas");
+                for (Persona p : personas) {
+                    System.out.println(personas.indexOf(p)+". "+p);
+                }
+                
+                System.out.println("Ingrese el indice de la persona a agregar al piso");
+                int index = sc.nextInt();
+                
+                while(index < 0 || index > personas.size()-1){
+                    System.out.println("El indice es incorrecto!");
+                    index = sc.nextInt();
+                }
+                
+                torre.get(contador).getHabitantes().add(personas.get(index));
+                
+                System.out.println("Desea seguir agregando personas 1 = si 2 = no");
+                int decision = sc.nextInt();
+                
+                if(decision == 2){
+                    agregarPersonas = false;
+                }
+                
+                
+                System.out.println("El piso se ha agregado exitosamente a la torre");
+                System.out.println();
             }
             
             
