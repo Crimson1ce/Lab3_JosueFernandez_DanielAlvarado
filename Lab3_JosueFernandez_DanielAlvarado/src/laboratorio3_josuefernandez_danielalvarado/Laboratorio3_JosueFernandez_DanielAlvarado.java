@@ -279,4 +279,27 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         
     }//Fin de crearPersona
     
+    public static void modificarPersona(){
+        listarPersonas();
+        System.out.println();
+        
+        System.out.print("Ingrese el número de la persona a modificar: ");
+        int nPersona = sc.nextInt();
+        
+    }
+    
+    
+    
+    
+    
+    public static void listarPersonas(){
+        int i=1;
+        System.out.println("PERSONAS\n");
+        for (Piso piso : torre) {
+            for (Persona habitante : piso.getHabitantes()) {
+                System.out.println((i++) + ". " + habitante.toString());
+            }
+        }
+    }
+    
 }

@@ -35,7 +35,7 @@ public class Regular extends EstadoRegistro{
 
     @Override
     public String toString() {
-        return "Regular: " + "usuario = " + usuario + ", password = " + password;
+        return "Regular" + "\tUsuario: " + usuario;
     }
     
     

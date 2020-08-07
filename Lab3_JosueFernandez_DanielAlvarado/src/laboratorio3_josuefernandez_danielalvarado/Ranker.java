@@ -26,7 +26,7 @@ public class Ranker extends Persona{
 
     @Override
     public String toString() {
-        return "Ranker: " + "evaluador = " + evaluador;
+        return "\tRanker\n" + super.toString();
     }
     
     
