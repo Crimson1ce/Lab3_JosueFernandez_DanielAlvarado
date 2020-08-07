@@ -24,7 +24,7 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+  
         int opcion = 1;
         
         while (opcion!=0) {
