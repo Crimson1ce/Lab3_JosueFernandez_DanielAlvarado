@@ -86,6 +86,76 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         System.out.println("8.  Modificar Piso");
         System.out.println("9.  Eliminar Piso");
         System.out.println("10. Log-out");
+        System.out.print("\nIngrese la opción que desee: ");
+        int opcion = sc.nextInt();
+        
+        String nombre;
+        
+        switch (opcion) {
+            case 1:
+                
+                
+                
+                
+                break;
+            case 2:
+                //Modificar persona
+                break;
+            case 3:
+                //Eliminar persona
+                break;
+            case 4:
+                //Crear prueba
+                break;
+            case 5:
+                //modificar prueba
+                break;
+            case 6:
+                //eliminar prueba
+                break;
+            case 7:
+                //crear piso
+                break;
+            case 8:
+                //modificar piso
+                break;
+            case 9:
+                //eliminar piso
+                break;
+            case 10:
+                signedInAsAdministrator = false;
+                break;
+            default:
+        }
+    }
+
+    public static void crearPersona(){
+        //Crear persona
+        System.out.println("***CREAR PERSONA***\n");
+        System.out.print("Ingrese el nombre de la persona: ");
+        String nombre = sc.next();
+        
+        System.out.println("Posiciones:");
+        System.out.println("1-> Pescador");
+        System.out.println("2-> Portador de lanzas");
+        System.out.println("3-> Portador de luz");
+        System.out.println("4-> Explorador");
+        System.out.println("5-> Manipulador de ondas");
+        System.out.print("\nIngrese la posición de la persona: ");
+        int posi = sc.nextInt();
+        
+        while(posi<1 || posi>5){
+            
+            System.out.println("\tPosiciones:");
+            System.out.println("\t1-> Pescador");
+            System.out.println("\t2-> Portador de lanzas");
+            System.out.println("\t3-> Portador de luz");
+            System.out.println("\t4-> Explorador");
+            System.out.println("\t5-> Manipulador de ondas");
+            System.out.print("\n\tIngrese la posición de la persona: ");
+            posi = sc.nextInt();
+            
+        }
         
     }
     
