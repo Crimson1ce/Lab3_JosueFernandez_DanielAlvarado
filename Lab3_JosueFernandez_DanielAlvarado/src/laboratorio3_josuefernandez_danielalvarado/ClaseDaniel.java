@@ -342,5 +342,41 @@ public class ClaseDaniel {
 
         return correcto;
     }
+    
+    public static void eliminarPiso(){
+        System.out.println("Elimninar un piso");
+        System.out.println();
+        
+        System.out.println("-> Esta es la lista de pisos");
+        for (Piso p : torre) {
+            System.out.println(torre.indexOf(p)+". "+p);
+        }
+        System.out.println();
+        
+        System.out.println("-> Ingrese el indice del piso a eliminar: ");
+        int indice = sc.nextInt();
+        
+        while(indice > torre.size()-1 || indice < 0){
+            System.out.println("El indice ingresado es incorrecto!");
+            indice = sc.nextInt();
+            System.out.println();
+        }
+        
+        Piso eliminar = torre.get(indice);
+        
+        System.out.println("Desea eliminar esta piso \n"+eliminar);
+        System.out.println("1 = si, 2 = no");
+        int decision = sc.nextInt();
+        
+        if(decision == 1){
+            torre.remove(indice);
+            
+            System.out.println("El piso se ha eliminado exitosamente");
+            System.out.println();
+        }else{
+            System.out.println("El piso no se elimino");
+            System.out.println();
+        }
+    }
 
 }
