@@ -98,7 +98,11 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         System.out.println("7.  Crear Piso");
         System.out.println("8.  Modificar Piso");
         System.out.println("9.  Eliminar Piso");
-        System.out.println("10. Log-out");
+        System.out.println("10. Informe de pruebas");
+        System.out.println("11. Visualizar pisos y pruebas");
+        System.out.println("12. Visualizar personas por tipo");
+        System.out.println("13. Visualizar personas por posición");
+        System.out.println("14. Log-out");
         System.out.print("\nIngrese la opción que desee: ");
         int opcion = sc.nextInt();
         sc.nextLine();
@@ -139,6 +143,18 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
                 //eliminar piso
                 break;
             case 10:
+                //Infrome de pruebas
+                break;
+            case 11:
+                //Listado pisos y pruebas
+                break;
+            case 12:
+                //Listado tipo
+                break;
+            case 13:
+                //Listado posición
+                break;
+            case 14:
                 signedInAsAdministrator = false;
                 break;
             default:
@@ -150,22 +166,7 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         
         //Crear persona
         System.out.println("***CREAR PERSONA***\n");
-        
-        //Listar Pisos
-        ////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////
-        
-        /*
-        System.out.print("Ingrese el piso en que desea agregar esta persona: ");
-        int cualPiso = sc.nextInt();
-        
-        while(cualPiso<1 || cualPiso>134 || !pisosExistentes.contains(cualPiso)){
-            System.out.print("\tEl piso ingresado no es válido, ingrese de nuevo: ");
-            cualPiso = sc.nextInt();
-        }   
-        */
+
         
         System.out.print("Ingrese el nombre de la persona: ");
         String nombre = sc.next();
@@ -328,12 +329,12 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         }
     }
     
-    public static void listarRankers(){
+    public static void listarRankers(int i){
         
-        int i=1;
         System.out.println("RANKERS\n");
         for (int j = contadorNormales; j < contadorPersonas; j++) {
-            System.out.println((i++) + ". " + personasEnTorre.toString());
+            System.out.println((i) + ". " + personasEnTorre.toString());
+            i++;
         }
     }
     
@@ -365,13 +366,13 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         System.out.print("Ingrese el nombre de la prueba: ");
         String nombre = sc.nextLine();
         
-        listarRankers();
+        listarRankers(1);
         System.out.print("Escoja al ranker evaluador de la prueba: ");
         int nRanker = sc.nextInt();
         sc.nextLine();
         
         while (nRanker<1 || nRanker>contadorRankers) {            
-            listarRankers();
+            listarRankers(1);
             System.out.print("Escoja un ranker válido: ");
             nRanker = sc.nextInt();
             sc.nextLine();
@@ -411,13 +412,16 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
             respuesta = sc.nextInt();
         }
         
+        boolean aprobada = respuesta==1;
+
+        pruebas.get(contadorPruebas).setAprobada(aprobada);
+
         contadorPruebas++;
         
     }
 
     public static void crearPiso(){
-        int contador=0;
-        
+
         System.out.println("Crear Piso");
         System.out.println();
         
@@ -441,7 +445,7 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         
         while(evaluadores){
             
-            listarRankers();
+            listarRankers(1);
             
             System.out.print("Ingrese el indice de la persona: ");
             int indice = sc.nextInt();
@@ -504,5 +508,51 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
         
     }
     
-}
+    public static void listarPorTipo(int i){
+        listarNormales();
+        listarRankers(i);
+    }
 
+    public static void listarPorPosicion(int i){
+        System.out.println("Pescadores");
+        for(Persona p : personasEnTorre){
+            if (p.getPosicion().toString().equals("Pescador")){
+                System.out.println((i++)+". "+p.toString());
+            }
+        }
+        System.out.println();
+
+        System.out.println("Portadores de lanzas");
+        for(Persona p : personasEnTorre){
+            if (p.getPosicion().toString().equals("Portador de lanzas")){
+                System.out.println((i++)+". "+p.toString());
+            }
+        }
+        System.out.println();
+
+        System.out.println("Portadores de luz");
+        for(Persona p : personasEnTorre){
+            if (p.getPosicion().toString().equals("Portador de luz")){
+                System.out.println((i++)+". "+p.toString());
+            }
+        }
+        System.out.println();
+
+        System.out.println("Exploradores");
+        for(Persona p : personasEnTorre){
+            if (p.getPosicion().toString().equals("Explorador")){
+                System.out.println((i++)+". "+p.toString());
+            }
+        }
+        System.out.println();
+
+        System.out.println("Manipuladores de ondas");
+        for(Persona p : personasEnTorre){
+            if (p.getPosicion().toString().equals("Manipulador de ondas")){
+                System.out.println((i++)+". "+p.toString());
+            }
+        }
+        System.out.println();
+    }
+
+}

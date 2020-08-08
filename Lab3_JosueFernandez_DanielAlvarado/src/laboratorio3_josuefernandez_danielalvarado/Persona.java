@@ -64,7 +64,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + "\tIdentificación: " + identificacion + "\tPosición: " + posicion.toString() + "\tEstado: " + estado.toString();
+        return "Identificación: " + identificacion + "\tNombre: " + nombre + "\tEstado: " + estado.toString() + "\tPosición: " + posicion.toString() ;
     }
     
     

@@ -55,11 +55,11 @@ public class Prueba {
         this.participantes = participantes;
     }
 
-    public boolean isAprovada() {
+    public boolean isAprobada() {
         return aprobada;
     }
 
-    public void setAprovada(boolean aprovada) {
+    public void setAprobada(boolean aprovada) {
         this.aprobada = aprovada;
     }
 
