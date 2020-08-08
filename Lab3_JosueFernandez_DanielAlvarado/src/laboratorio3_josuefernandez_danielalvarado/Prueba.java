@@ -25,10 +25,10 @@ public class Prueba {
         this.evaluador = evaluador;
     }
 
-    public Prueba(String nombre, Ranker evaluador, boolean aprovada) {
+    public Prueba(String nombre, Ranker evaluador, boolean aprobada) {
         this.nombre = nombre;
         this.evaluador = evaluador;
-        this.aprobada = aprovada;
+        this.aprobada = aprobada;
     }
 
     public String getNombre() {

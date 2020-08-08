@@ -4,6 +4,7 @@
 package laboratorio3_josuefernandez_danielalvarado;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -14,12 +15,14 @@ import java.util.Scanner;
 public class Laboratorio3_JosueFernandez_DanielAlvarado {
 
     static Scanner sc = new Scanner(System.in);
+    static Random r = new Random();
     
     static boolean signedInAsAdministrator = false;
     
     static ArrayList<Piso> torre = new ArrayList();
     static ArrayList<Integer> pisosExistentes = new ArrayList();
     static ArrayList<Persona> personasEnTorre = new ArrayList();
+    static ArrayList<Prueba> pruebas = new ArrayList();
     
     static int contadorPersonas = 0;
     static int contadorRankers = 0;
@@ -374,12 +377,132 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
             sc.nextLine();
         }
         
-        agregarPersonasAPrueba();
+        Prueba test = new Prueba(nombre, (Ranker) personasEnTorre.get(contadorNormales + nRanker-1));
+        pruebas.add(test);
+        
+        boolean agregarPersonas = true;
+            
+        while (agregarPersonas){
+            listarNormales();
+                
+            System.out.print("Ingrese el indice de la persona a agregar al equipo: ");
+            int index = sc.nextInt();
+                
+            while(index < 1 || index > contadorNormales){
+                System.out.print("El indice es incorrecto! Ingrese de nuevo: ");
+                index = sc.nextInt();
+            }
+                
+            pruebas.get(contadorPruebas).getParticipantes().add((Normal)personasEnTorre.get(index-1));
+                
+            System.out.print("Desea seguir agregando personas 1 = si Otro número = no: ");
+            int decision = sc.nextInt();
+                
+            if(decision != 1){
+                agregarPersonas = false;
+            }    
+        }
+        
+        System.out.print("¿Fue la prueba aprobada?\n1.Sí\n2.No\nRespuesta: ");
+        int respuesta = sc.nextInt();
+        
+        while (respuesta<1 || respuesta>2) {
+            System.out.print("\t¿Fue la prueba aprobada?\n\t1.Sí\n\t2.No\n\tRespuesta: ");
+            respuesta = sc.nextInt();
+        }
+        
+        contadorPruebas++;
         
     }
 
-    public static void agregarPersonasAPrueba() {
+    public static void crearPiso(){
+        int contador=0;
+        
+        System.out.println("Crear Piso");
+        System.out.println();
+        
+        System.out.print("Ingrese el nombre del administrador del piso: ");
+        String administrador = sc.next();
+        System.out.println();
+        
+        
+        System.out.print("Ingrese el nivel del piso: ");
+        int nivel = sc.nextInt();
+        
+        while(nivel < 0 || nivel > 134 || pisosExistentes.contains(nivel)){
+            System.out.print("El nivel ingresado es inválido! Ingrese de nuevo: ");
+            nivel = sc.nextInt();
+        }
+        
+        torre.add(new Piso(administrador));
+        contadorPisos++;
+        
+        boolean evaluadores = true;
+        
+        while(evaluadores){
+            
+            listarRankers();
+            
+            System.out.print("Ingrese el indice de la persona: ");
+            int indice = sc.nextInt();
+                
+            while(indice < 1 || indice > contadorRankers){
+                System.out.print("El indice ingresado es incorrecto! Ingrese de nuevo: ");
+                indice = sc.nextInt();
+            }
+                
+            Ranker n =(Ranker)personasEnTorre.get(contadorNormales + indice - 1);
+            torre.get(contadorPisos).getEvaluadores().add(n);
+            
+            System.out.print("Desea seguir agregando evaluadores 1= si Otro número= no: ");
+            int c = sc.nextInt();
+                
+            if(c != 1){
+                evaluadores = false;
+            }
+        }
+            
+        boolean hayDirector = false;
+            
+        while(hayDirector == false){
+            int limit = personasEnTorre.size()-1;
+            int ale = 0+r.nextInt(limit);
+                
+            if(personasEnTorre.get(ale) instanceof Ranker){
+                torre.get(contadorPisos).setDirector((Ranker)personasEnTorre.get(ale));
+                hayDirector = true;
+            }
+            
+        }
+            
+        boolean agregarPersonas = true;
+            
+        while (agregarPersonas){
+            listarPersonas();
+                
+            System.out.print("Ingrese el indice de la persona a agregar al piso: ");
+            int index = sc.nextInt();
+                
+            while(index < 1 || index > contadorPersonas){
+                System.out.print("El indice es incorrecto! Ingrese de nuevo: ");
+                index = sc.nextInt();
+            }
+                
+            torre.get(contadorPisos).getHabitantes().add(personasEnTorre.get(index-1));
+                
+            System.out.print("Desea seguir agregando personas 1 = si Otro número = no: ");
+            int decision = sc.nextInt();
+                
+            if(decision != 1){
+                agregarPersonas = false;
+            }    
+        }
+        System.out.println("El piso se ha agregado exitosamente a la torre!");
+        System.out.println();
+            
+        contadorPisos++;
         
     }
     
 }
+
