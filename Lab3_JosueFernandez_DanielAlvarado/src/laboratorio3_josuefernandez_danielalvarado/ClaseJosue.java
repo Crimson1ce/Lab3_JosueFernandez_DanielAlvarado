@@ -14,12 +14,13 @@ import java.util.Scanner;
  * @author IT
  */
 public class ClaseJosue {
-    
+
     static Scanner sc = new Scanner(System.in);
     static Random r = new Random();
     static ArrayList<Piso> torre = new ArrayList();
     static int contador = 0;
     static ArrayList<Persona> personas = new ArrayList();
+    static ArrayList<Prueba> pruebas = new ArrayList();
 
     public static void crearPiso() {
         System.out.println("Crear Piso");
@@ -246,11 +247,11 @@ public class ClaseJosue {
 
                     if (ciclo) {
                         incorrecto = false;
-                    }else{
+                    } else {
                         System.out.println("Ingrese un nivel correcto");
                         nivel = sc.nextInt();
-                        
-                        while(nivel > 134 || nivel < 0){
+
+                        while (nivel > 134 || nivel < 0) {
                             System.out.println("Ingrese un nivel correcto!");
                             nivel = sc.nextInt();
                         }
@@ -352,193 +353,200 @@ public class ClaseJosue {
 
         return correcto;
     }
-    
-    public static void eliminarPiso(){
+
+    public static void eliminarPiso() {
         System.out.println("Elimninar un piso");
         System.out.println();
-        
+
         System.out.println("-> Esta es la lista de pisos");
         for (Piso p : torre) {
-            System.out.println(torre.indexOf(p)+". "+p);
+            System.out.println(torre.indexOf(p) + ". " + p);
         }
         System.out.println();
-        
+
         System.out.println("-> Ingrese el indice del piso a eliminar: ");
         int indice = sc.nextInt();
-        
-        while(indice > torre.size()-1 || indice < 0){
+
+        while (indice > torre.size() - 1 || indice < 0) {
             System.out.println("El indice ingresado es incorrecto!");
             indice = sc.nextInt();
             System.out.println();
         }
-        
+
         Piso eliminar = torre.get(indice);
-        
-        System.out.println("Desea eliminar esta piso \n"+eliminar);
+
+        System.out.println("Desea eliminar esta piso \n" + eliminar);
         System.out.println("1 = si, 2 = no");
         int decision = sc.nextInt();
-        
-        if(decision == 1){
+
+        if (decision == 1) {
             torre.remove(indice);
-            
+
             System.out.println("El piso se ha eliminado exitosamente");
             System.out.println();
-        }else{
+        } else {
             System.out.println("El piso no se elimino");
             System.out.println();
         }
     }
-    
-    public static void modificarPersona(){
+
+    public static void modificarPersona() {
         System.out.println("Modificar persona");
         System.out.println();
-        
+
         System.out.println("-> Esta es la lista de personas");
         for (Persona p : personas) {
-            System.out.println(personas.indexOf(p)+". "+p);
+            System.out.println(personas.indexOf(p) + ". " + p);
         }
         System.out.println();
-        
+
         System.out.println("-> Ingrese el indice de la persona a modificar: ");
         int indice = sc.nextInt();
         System.out.println();
-        
-        while(indice > personas.size()-1 || indice < 0){
+
+        while (indice > personas.size() - 1 || indice < 0) {
             System.out.println("El indice es incorrecto!");
             indice = sc.nextInt();
             System.out.println();
         }
-        
-        System.out.println("-> Ingrese el atributo a modificar: ");
-        System.out.println("1) Atributos tipo persona");
-        System.out.println("2) Atributos Normal");
-        System.out.println("3) Atributos Ranker");
-        int opcion = sc.nextInt();
-        
-        switch(opcion){
-            
+
+        System.out.println("Atributos tipo persona");
+        System.out.println();
+
+        System.out.println("-> Ingrese su opcion: ");
+        System.out.println("1) Nombre");
+        System.out.println("2) Posicion");
+        System.out.println("3) Identificacion");
+        int index = sc.nextInt();
+        System.out.println();
+
+        switch (index) {
+
             case 1:
-                System.out.println("Atributos tipo persona");
+                System.out.println("Ingrese el nuevo nombre: ");
+                String nombre = sc.next();
                 System.out.println();
-                
-                System.out.println("-> Ingrese su opcion: ");
-                System.out.println("1) Nombre");
-                System.out.println("2) Posicion");
-                System.out.println("3) Identificacion");
-                int index = sc.nextInt();
+
+                personas.get(indice).setNombre(nombre);
+
+                System.out.println("El nombre se cambio exitosamente");
                 System.out.println();
-                
-                switch(index){
-                    
+                break;
+
+            case 2:
+                System.out.println("-> Ingrese la nueva posicion: ");
+                System.out.println("1) Pescador");
+                System.out.println("2) Portador de lanzas");
+                System.out.println("3) Portador de la luz");
+                System.out.println("4) Explorador");
+                System.out.println("5) Manipulador de ondas");
+                int c = sc.nextInt();
+                System.out.println();
+
+                switch (c) {
                     case 1:
-                        System.out.println("Ingrese el nuevo nombre: ");
-                        String nombre = sc.next();
-                        System.out.println();
-                        
-                        personas.get(indice).setNombre(nombre);
-                        
-                        System.out.println("El nombre se cambio exitosamente");
+                        personas.get(indice).setPosicion(new Posicion("Pescador"));
+                        System.out.println("Se cambio la posicion de la persona");
                         System.out.println();
                         break;
-                        
+
                     case 2:
-                        System.out.println("-> Ingrese la nueva posicion: ");
-                        System.out.println("1) Pescador");
-                        System.out.println("2) Portador de lanzas");
-                        System.out.println("3) Portador de la luz");
-                        System.out.println("4) Explorador");
-                        System.out.println("5) Manipulador de ondas");
-                        int c = sc.nextInt();
+                        personas.get(indice).setPosicion(new Posicion("Portador de lanzas"));
+                        System.out.println("Se cambio la posicion de la persona");
                         System.out.println();
-                        
-                        switch(c){
-                            case 1:
-                                personas.get(indice).setPosicion(new Posicion("Pescador"));
-                                System.out.println("Se cambio la posicion de la persona");
-                                System.out.println();
-                                break;
-                                
-                            case 2:
-                                personas.get(indice).setPosicion(new Posicion("Portador de lanzas"));
-                                System.out.println("Se cambio la posicion de la persona");
-                                System.out.println();
-                                break;
-                                
-                            case 3:
-                                personas.get(indice).setPosicion(new Posicion("Portador de la luz"));
-                                System.out.println("Se cambio la posicion de la persona");
-                                System.out.println();
-                                break;
-                                
-                            case 4:
-                                personas.get(indice).setPosicion(new Posicion("Explorador"));
-                                System.out.println("Se cambio la posicion de la persona");
-                                System.out.println();
-                                break;
-                                
-                            case 5:
-                                personas.get(indice).setPosicion(new Posicion("Manipulador de ondas"));
-                                System.out.println("Se cambio la posicion de la persona");
-                                System.out.println();
-                                break;
-                                
-                            default: System.out.println("Se equivoco de opcion...");
-                                System.out.println();
-                        }
                         break;
-                        
+
                     case 3:
-                        System.out.println("Ingrese la nueva identificacion de la persona");
-                        int identificacion = sc.nextInt();
+                        personas.get(indice).setPosicion(new Posicion("Portador de la luz"));
+                        System.out.println("Se cambio la posicion de la persona");
                         System.out.println();
-                        
-                        boolean rev = false;
-                        
-                        while (rev == false){
-                            boolean check;
-                            check = revisarIdentificacion(identificacion);
-                            
-                            if(check){
-                                rev = true;
-                            }else{
-                                System.out.println("Ingrese un id correcto!");
-                                identificacion = sc.nextInt();
-                            }
-                        }
-                        
                         break;
+
+                    case 4:
+                        personas.get(indice).setPosicion(new Posicion("Explorador"));
+                        System.out.println("Se cambio la posicion de la persona");
+                        System.out.println();
+                        break;
+
+                    case 5:
+                        personas.get(indice).setPosicion(new Posicion("Manipulador de ondas"));
+                        System.out.println("Se cambio la posicion de la persona");
+                        System.out.println();
+                        break;
+
+                    default:
+                        System.out.println("Se equivoco de opcion...");
+                        System.out.println();
                 }
                 break;
-                
-            case 2:
-                
-                break;
-                
+
             case 3:
-                
-                break;
-                
-            default: System.out.println("Se equivoco de opcion...");
+                System.out.println("Ingrese la nueva identificacion de la persona");
+                int identificacion = sc.nextInt();
                 System.out.println();
+
+                boolean rev = false;
+
+                while (rev == false) {
+                    boolean check;
+                    check = revisarIdentificacion(identificacion);
+
+                    if (check) {
+                        rev = true;
+                    } else {
+                        System.out.println("Ingrese un id correcto!");
+                        identificacion = sc.nextInt();
+                    }
+                }
+
+                personas.get(indice).setIdentificacion(identificacion);
+
+                System.out.println("Se modifico la identificacion correctamente");
+                System.out.println();
+
+                break;
         }
     }
     
-    public static boolean revisarIdentificacion(int id){
+    public static void informePruebas(){
+        System.out.println("-> Informe de pruebas");
+        System.out.println();
+        
+        for (Prueba p : pruebas) {
+            int num = pruebas.indexOf(p);
+            System.out.println(pruebas.get(num).getNombre());
+            System.out.println();
+            
+            for (Persona n : pruebas.get(num).getParticipantes()) {
+                int a = pruebas.get(num).getParticipantes().indexOf(n);
+                System.out.println(pruebas.get(num).getParticipantes().get(a).getNombre());
+                System.out.println(pruebas.get(num).getParticipantes().get(a).getPosicion());
+            }
+            
+            System.out.println(pruebas.get(num).isAprobada());
+            
+            System.out.println();
+            System.out.println();
+            
+        }
+    }
+
+    public static boolean revisarIdentificacion(int id) {
         boolean correcto = false;
         int c = 0;
-        
+
         for (int i = 0; i < personas.size(); i++) {
             int num = personas.get(i).getIdentificacion();
-            
-            if(num == id){
+
+            if (num == id) {
                 c++;
             }
         }
-        
-        if(c == 0){
+
+        if (c == 0) {
             correcto = true;
         }
-        
+
         return correcto;
     }
 }
