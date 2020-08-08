@@ -18,6 +18,7 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
     static Random r = new Random();
     
     static boolean signedInAsAdministrator = false;
+    static boolean signedInAsUser = false;
     
     static ArrayList<Piso> torre = new ArrayList();
     static ArrayList<Integer> pisosExistentes = new ArrayList();
@@ -66,6 +67,28 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
                     
                     break;
                 case 2:
+                System.out.print("Ingrese el número de id: ");
+                int id = sc.nextInt();
+                
+                
+                for (int i=0; i<torre.size();i++){
+                    Piso piso = torre.get(i);
+
+                    for(Persona p : piso.getHabitantes()){
+
+                        if(p.getIdentificacion()==id){
+                            signedInAsUser = true;
+                            System.out.println("Ingreso exitoso.");
+                        } else {
+                        System.out.println("El usuario y/o la contraseña ´son incorrectos.");
+                        }
+
+                    }
+                }
+
+                while(signedInAsUser){
+                    MenuUsuario();
+                }
                     break;
                 default:
                     System.out.println("Ha ingresado una opción inválida.");
@@ -120,12 +143,14 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
                 break;
             case 2:
                 //Modificar persona
+                modificarPersona();
                 break;
             case 3:
                 //Eliminar persona
                 break;
             case 4:
                 //Crear prueba
+                crearPrueba();
                 break;
             case 5:
                 //modificar prueba
@@ -135,9 +160,11 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
                 break;
             case 7:
                 //crear piso
+                crearPiso();
                 break;
             case 8:
                 //modificar piso
+                modificarPiso();
                 break;
             case 9:
                 //eliminar piso
@@ -150,9 +177,11 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
                 break;
             case 12:
                 //Listado tipo
+                listarPorTipo(1);
                 break;
             case 13:
                 //Listado posición
+                listarPorPosicion(1);
                 break;
             case 14:
                 signedInAsAdministrator = false;
@@ -553,6 +582,279 @@ public class Laboratorio3_JosueFernandez_DanielAlvarado {
             }
         }
         System.out.println();
+    }
+
+    public static void MenuUsuario(){
+        System.out.println("\n*** USUARIO ***");
+        
+        System.out.println("1. Visualizar pisos y pruebas");
+        System.out.println("2. Visualizar personas por tipo");
+        System.out.println("3. Visualizar personas por posición");
+        System.out.println("4. Log-out");
+        System.out.print("\nIngrese la opción que desee: ");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        
+        String nombre;
+        /*
+        contadorPisos++;
+        torre.add(new Piso());
+        pisosExistentes.add(1);
+        */
+        switch (opcion) {
+            case 1:
+                //Listado pisos y pruebas
+                break;
+            case 2:
+                //Listado tipo
+                listarPorTipo(1);
+                break;
+            case 3:
+                //Listado posición
+                listarPorPosicion(1);
+                break;
+            case 4:
+                signedInAsUser = false;
+                break;
+            default:
+                System.out.println("Opción inválida.");
+        }
+    }
+
+    public static void modificarPiso() {
+        System.out.println("Modificar piso");
+        System.out.println();
+
+        System.out.println("Lista de pisos");
+        for (Piso p : torre) {
+            System.out.println(torre.indexOf(p) + ". " + p);
+        }
+        System.out.println();
+
+        System.out.println("Elija el indice del piso a modificar: ");
+        int indice = sc.nextInt();
+
+        while (indice > torre.size() || indice < 0) {
+            System.out.println("El indice ingresado es incorrecto!");
+            indice = sc.nextInt();
+            System.out.println();
+        }
+
+        System.out.println("-> Elija el atributo a modificar: ");
+        System.out.println("1) Modificar administrador");
+        System.out.println("2) Modificar evaluadores");
+        System.out.println("3) Asignar un nuevo director");
+        System.out.println("4) Asignar nuevo nivel");
+        System.out.println("5) Modificar lista de habitantes");
+        int opcion = sc.nextInt();
+
+        switch (opcion) {
+
+            case 1:
+                System.out.println("Modificar administrador");
+                System.out.println();
+
+                System.out.println("Ingrese el nombre del nuevo administrador: ");
+                String nombre = sc.next();
+                System.out.println();
+
+                torre.get(indice).setAdministrador(nombre);
+
+                System.out.println("Se cambio el administrador correctamente");
+                System.out.println();
+
+                break;
+
+            case 2:
+                System.out.println("Modificar evaluadores");
+                System.out.println();
+
+                System.out.println("-> Ingrese la opcion a ejecutar: ");
+                System.out.println("1) Agregar evaluadores");
+                System.out.println("2) Eliminar evaluadores");
+                int index = sc.nextInt();
+
+                switch (index) {
+
+                    case 1:
+                        // desplegar lista de rankers
+
+                        System.out.println("Elija el indice del ranker a agregar");
+                        int s = sc.nextInt();
+                        //agregar validacion while de indice lista de rankers
+
+                        //ranker r = personas.get(indice);
+                        //torre.get(indice).getEvaluadores().add(r);
+                        System.out.println("Se agrego un nuevo evaluador a la lista");
+                        System.out.println();
+                        break;
+
+                    case 2:
+                        for (Persona p : torre.get(indice).getEvaluadores()) {
+                            System.out.println(torre.get(indice).getEvaluadores().indexOf(p) + ". " + p);
+                        }
+                        System.out.println();
+
+                        System.out.println("Ingrese el indice del evaluador a eliminar");
+                        int num = sc.nextInt();
+
+                        while (num > torre.get(indice).getEvaluadores().size() - 1 || num < 0) {
+                            System.out.println("El indice ingresado es incorrecto!");
+                            num = sc.nextInt();
+                        }
+
+                        torre.get(indice).getEvaluadores().remove(num);
+
+                        System.out.println("El evaluador ha sido eliminado de la lista");
+                        System.out.println();
+                        break;
+
+                    default:
+                        System.out.println("Se equivoco de opcion...");
+                        System.out.println();
+                }
+                break;
+
+            case 3:
+                System.out.println("Asignar un nuevo director");
+                System.out.println();
+
+                boolean hayDirector = false;
+
+                while (hayDirector == false) {
+                    int limit = personasEnTorre.size() - 1;
+                    int ale = 0 + r.nextInt(limit);
+
+                    if (personasEnTorre.get(ale) instanceof Ranker) {
+                        torre.get(contadorPisos).setDirector((Ranker) personasEnTorre.get(ale));
+                        hayDirector = true;
+                    }
+                }
+                System.out.println("Un nuevo director se agrego aleatoreamente");
+                System.out.println();
+
+                break;
+
+            case 4:
+                System.out.println("Modificar el nivel del piso");
+                System.out.println();
+
+                System.out.println("Ingese el nuevo nivel del piso");
+                int nivel = sc.nextInt();
+
+                boolean incorrecto = true;
+
+                while (incorrecto) {
+                    boolean ciclo;
+                    ciclo = validarPiso(nivel);
+
+                    if (ciclo) {
+                        incorrecto = false;
+                    }else{
+                        System.out.println("Ingrese un nivel correcto");
+                        nivel = sc.nextInt();
+                        
+                        while(nivel > 134 || nivel < 0){
+                            System.out.println("Ingrese un nivel correcto!");
+                            nivel = sc.nextInt();
+                        }
+                    }
+                }
+
+                torre.get(indice).setNivel(nivel);
+
+                System.out.println("El nivel del piso se modifico correctamente");
+                System.out.println();
+                break;
+
+            case 5:
+                System.out.println("Modificar habitantes");
+                System.out.println();
+
+                System.out.println("-> Ingrese su eleccion: ");
+                System.out.println("1) Agregar personas");
+                System.out.println("2) Eliminar una persona");
+                int eleccion = sc.nextInt();
+
+                switch (eleccion) {
+
+                    case 1:
+                        System.out.println("Agregar persona");
+                        System.out.println();
+
+                        for (Persona p : personasEnTorre) {
+                            System.out.println(personasEnTorre.indexOf(p) + ". " + p);
+                        }
+                        System.out.println();
+
+                        System.out.println("Ingrese el indice de la persona a agregar: ");
+                        int e = sc.nextInt();
+
+                        while (e > personasEnTorre.size() - 1 || e < 0) {
+                            System.out.println("El indice es incorrecto!");
+                            e = sc.nextInt();
+                        }
+
+                        torre.get(indice).getHabitantes().add(personasEnTorre.get(e));
+
+                        System.out.println("Se agrego un nuevo habitante a la lista");
+                        System.out.println();
+                        break;
+
+                    case 2:
+                        System.out.println("Eliminar persona");
+                        System.out.println();
+
+                        for (Persona p : torre.get(indice).getHabitantes()) {
+                            System.out.println(torre.get(indice).getHabitantes().indexOf(p) + ". " + p);
+                        }
+                        System.out.println();
+
+                        System.out.println("Ingrese el indice de la persona a eliminar: ");
+                        int n = sc.nextInt();
+
+                        while (n > torre.get(indice).getHabitantes().size() - 1 || n < 0) {
+                            System.out.println("El indice ingresado es incorrecto!");
+                            n = sc.nextInt();
+                        }
+
+                        torre.get(n).getHabitantes().remove(n);
+
+                        System.out.println("El habitante se ha eliminado del piso");
+                        System.out.println();
+
+                        break;
+                }
+                break;
+
+            case 6:
+                System.out.println("Ha decidido salir");
+                break;
+
+            default:
+                System.out.println("La opcion es incorrecta!");
+                System.out.println();
+        }
+    }
+
+    public static boolean validarPiso(int nivel) {
+
+        boolean correcto = false;
+        int c = 0;
+
+        for (int i = 0; i < torre.size(); i++) {
+            int numero = torre.get(i).getNivel();
+
+            if (nivel == numero) {
+                c++;
+            }
+        }
+
+        if (c == 0) {
+            correcto = true;
+        }
+
+        return correcto;
     }
 
 }
