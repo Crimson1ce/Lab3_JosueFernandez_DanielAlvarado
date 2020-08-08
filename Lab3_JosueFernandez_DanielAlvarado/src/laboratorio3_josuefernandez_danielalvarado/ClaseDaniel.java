@@ -12,6 +12,10 @@ import java.util.Random;
  * @author dalva
  */
 public class ClaseDaniel {
+    /*
+<<<<<<< HEAD
+    
+=======
 
     static Scanner sc = new Scanner(System.in);
     static Random r = new Random();
@@ -379,4 +383,6 @@ public class ClaseDaniel {
         }
     }
 
+>>>>>>> 5d9b42f8b893ed75063d43805dbdeae5d64b5b9d
+*/
 }
